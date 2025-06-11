@@ -8,14 +8,16 @@
   <style>
     :root {
       --main-bg: linear-gradient(180deg, #232a33 0%, #3a4a5a 100%);
-      --block-bg: #f7f7f7;
+      --white: #fff;
       --blue: #b7c7d6;
+      --blue-light: #e3e7ed;
       --blue-dark: #7a8fa6;
       --gray: #7a7a7a;
       --text: #232a33;
       --border: #e0e0e0;
-      --radius: 18px;
+      --radius: 32px;
       --accent: #b7c7d6;
+      --shadow: 0 2px 24px rgba(60,80,110,0.10);
     }
     html, body {
       margin: 0;
@@ -25,143 +27,160 @@
       color: var(--text);
       min-height: 100vh;
     }
-    body {
-      background: var(--main-bg);
-    }
-    .invite-wrap {
-      max-width: 1200px;
+    body { background: var(--main-bg); overflow-x: hidden; }
+    .main-wrap {
+      max-width: 430px;
+      width: 100%;
       margin: 0 auto;
-      display: flex;
-      gap: 32px;
-      padding: 48px 12px 32px 12px;
+      padding: 0 0 40px 0;
       position: relative;
-      z-index: 1;
     }
-    .col {
-      background: var(--block-bg);
+    .big-white {
+      background: var(--white);
       border-radius: var(--radius);
-      flex: 1 1 0;
-      min-width: 0;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 32px;
+      margin-bottom: 32px;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      padding: 0 0 24px 0;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 2px 16px rgba(60,80,110,0.07);
-      border: 1.5px solid var(--blue);
+      gap: 0;
     }
-    .col:not(:last-child) {
-      margin-right: 0;
+    .section {
+      padding: 0 32px;
+      position: relative;
+    }
+    .section-blue {
+      background: rgba(183,199,214,0.18);
+      padding: 36px 32px 36px 32px;
+      border-radius: 0;
+    }
+    .section-white {
+      background: transparent;
+      padding: 36px 32px 36px 32px;
+      border-radius: 0;
+    }
+    .section:first-child {
+      padding-top: 48px;
+    }
+    .section:last-child {
+      padding-bottom: 48px;
     }
     .header-block {
-      padding: 24px 24px 0 24px;
       text-align: center;
-      position:relative;
+      position: relative;
+      padding-bottom: 0;
     }
     .img-main {
       width: 100%;
-      height: 220px;
+      height: 260px;
       background: #dbe2ea;
-      border-radius: 12px;
-      margin-bottom: 10px;
+      border-radius: 24px;
       object-fit: cover;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .img-main::after {
-      content: 'Фото';
-      color: #b7c7d6;
-      font-size: 1.2rem;
-      font-family: 'Montserrat', sans-serif;
-      position: absolute;
-      bottom: 10px;
-      left: 0; right: 0;
-      text-align: center;
-      opacity: 0.6;
+      margin-bottom: 18px;
+      display: block;
     }
     .date-big {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: #fff;
       font-weight: 700;
       letter-spacing: 2px;
-      margin-bottom: 8px;
       position: absolute;
       left: 24px;
       top: 24px;
       z-index: 2;
       text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      opacity: 0.95;
+      line-height: 1.1;
+      pointer-events: none;
     }
     .names {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--gray);
+      font-size: 1.5rem;
+      color: var(--text);
       font-weight: 700;
       margin-bottom: 2px;
       letter-spacing: 1px;
-    }
-    .block-white {
-      background: #fff;
-      border-radius: 18px;
-      margin: 18px 24px 0 24px;
-      padding: 18px 14px 10px 14px;
-      box-shadow: 0 2px 8px rgba(60,80,110,0.04);
-      color: var(--text);
-      font-size: 1rem;
       text-align: center;
-    }
-    .img-polaroid-row {
-      display: flex;
-      gap: 10px;
-      margin: 12px 0 0 0;
-      justify-content: center;
-    }
-    .img-polaroid {
-      width: 80px;
-      height: 90px;
-      background: #dbe2ea;
-      border-radius: 8px;
       position: relative;
-      overflow: hidden;
+      z-index: 2;
     }
-    .img-polaroid::after {
-      content: 'Фото';
+    .subtitle-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
       color: #b7c7d6;
-      font-size: 0.9rem;
-      font-family: 'Montserrat', sans-serif;
-      position: absolute;
-      bottom: 6px;
-      left: 0; right: 0;
+      margin-bottom: 8px;
       text-align: center;
-      opacity: 0.6;
+      opacity: 0.7;
+      letter-spacing: 1px;
     }
-    .block-white .names {
-      color: var(--text);
-      font-size: 1.1rem;
-      margin-bottom: 0;
+    .polaroid-row {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin: 18px 0 18px 0;
     }
-    .block-white .date {
-      color: var(--blue-dark);
-      font-size: 1rem;
-      margin-bottom: 8px;
+    .polaroid-frame {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(60,80,110,0.13);
+      padding: 8px 8px 24px 8px;
+      display: inline-block;
+      margin: 0 6px;
+      position: relative;
+      width: 90px;
+      height: 100px;
+      overflow: visible;
     }
-    .block-white .desc {
+    .polaroid-frame img {
+      width: 74px;
+      height: 74px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+      margin: 0 auto;
+    }
+    .polaroid-caption {
+      text-align: center;
+      font-size: 0.9em;
+      color: #b7c7d6;
+      margin-top: 4px;
+      font-family: 'Montserrat', sans-serif;
+      opacity: 0.7;
+    }
+    .zoom-effect {
+      transition: transform 0.18s cubic-bezier(.4,1.2,.4,1);
+      will-change: transform;
+      touch-action: manipulation;
+    }
+    .zoom-effect:hover,
+    .zoom-effect:active,
+    .zoom-effect.active {
+      transform: scale(1.13) rotate(var(--rotate, 0deg));
+      z-index: 2;
+    }
+    .desc {
       color: var(--gray);
-      font-size: 1rem;
-      margin-bottom: 8px;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .divider {
+      width: 60%;
+      height: 1px;
+      background: #e0e0e0;
+      margin: 24px auto;
+      border-radius: 1px;
+      opacity: 0.5;
     }
     .calendar-block {
-      background: #e3e7ed;
-      border-radius: 12px;
-      margin: 18px 24px 0 24px;
-      padding: 16px 10px 10px 10px;
       text-align: center;
+      margin-bottom: 0;
     }
     .calendar-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--blue-dark);
       margin-bottom: 8px;
     }
@@ -172,14 +191,9 @@
       display: block;
     }
     .countdown-block {
-      background: #fff;
-      border-radius: 18px;
-      margin: 18px 24px 0 24px;
-      padding: 18px 14px 10px 14px;
-      box-shadow: 0 2px 8px rgba(60,80,110,0.04);
-      color: var(--text);
       font-size: 1.1rem;
       text-align: center;
+      margin-bottom: 0;
     }
     .countdown {
       font-size: 1.5rem;
@@ -188,45 +202,54 @@
       margin-bottom: 10px;
       color: var(--blue-dark);
     }
-    /* Центр */
-    .center-block {
-      background: var(--blue);
-      border-radius: 18px;
-      margin: 18px 24px 0 24px;
-      padding: 24px 18px 18px 18px;
-      color: #fff;
-      font-size: 1.1rem;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(60,80,110,0.04);
-    }
-    .center-block .title {
+    .venue-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: #fff;
-      margin-bottom: 8px;
+      font-size: 1.5rem;
+      color: var(--blue-dark);
+      text-align: center;
+      margin-bottom: 0;
       letter-spacing: 1px;
     }
-    .center-block .subtitle {
+    .venue-subtitle {
       font-family: 'Dancing Script', cursive;
       font-size: 1.1rem;
-      color: #e6e6e6;
-      margin-bottom: 10px;
+      color: #b7c7d6;
+      text-align: center;
+      margin-bottom: 18px;
+      opacity: 0.7;
     }
-    .img-polaroid-center-row {
+    .venue-desc {
+      color: var(--gray);
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .venue-address {
+      color: var(--text);
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .venue-polaroids {
       display: flex;
-      gap: 10px;
-      margin: 12px 0 0 0;
+      gap: 18px;
       justify-content: center;
+      margin: 18px 0 18px 0;
     }
-    .img-polaroid-center {
+    .venue-polaroid {
       width: 80px;
       height: 90px;
       background: #dbe2ea;
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(60,80,110,0.10);
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
     }
-    .img-polaroid-center::after {
+    .venue-polaroid::after {
       content: 'Фото';
       color: #b7c7d6;
       font-size: 0.9rem;
@@ -237,16 +260,11 @@
       text-align: center;
       opacity: 0.6;
     }
-    .center-block .address {
-      color: #e6e6e6;
-      font-size: 1rem;
-      margin: 10px 0 0 0;
-    }
     .btn-map {
-      margin: 14px auto 0 auto;
+      margin: 0 auto 18px auto;
       background: transparent;
-      color: #fff;
-      border: 1.5px solid #fff;
+      color: var(--blue-dark);
+      border: 1.5px solid var(--blue-dark);
       border-radius: 8px;
       padding: 7px 18px;
       font-size: 1rem;
@@ -254,33 +272,36 @@
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
       display: block;
+      touch-action: manipulation;
     }
     .btn-map:hover {
-      background: #fff;
-      color: var(--blue-dark);
+      background: var(--blue-dark);
+      color: #fff;
     }
     .timing-block {
-      background: var(--blue);
-      border-radius: 18px;
-      margin: 18px 24px 0 24px;
-      padding: 24px 18px 18px 18px;
-      color: #fff;
-      font-size: 1.1rem;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(60,80,110,0.04);
+      margin-bottom: 0;
     }
     .timing-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: #fff;
+      font-size: 1.3rem;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .timing-subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: #b7c7d6;
       margin-bottom: 18px;
-      text-align: center;
+      opacity: 0.7;
     }
     .timing-list {
       display: flex;
       flex-direction: column;
       gap: 18px;
       align-items: center;
+      margin: 0 auto;
     }
     .timing-item {
       display: flex;
@@ -288,48 +309,51 @@
       align-items: center;
       font-size: 1.05rem;
       position: relative;
+      width: 100%;
+      max-width: 320px;
     }
     .timing-time {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
-      color: #fff;
+      color: var(--blue-dark);
       font-weight: 700;
       margin-bottom: 2px;
     }
     .timing-desc {
-      color: #e6e6e6;
+      color: var(--gray);
       font-size: 0.98rem;
       text-align: center;
+    }
+    .timing-icon {
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 6px auto;
+      display: block;
+      opacity: 0.7;
     }
     .timing-arrow {
       width: 2px;
       height: 28px;
-      background: #fff;
+      background: #b7c7d6;
       margin: 0 auto;
+      border-radius: 1px;
+      opacity: 0.3;
     }
-    /* Правая колонка */
-    .block-right {
-      background: #fff;
-      border-radius: 18px;
-      margin: 18px 24px 0 24px;
-      padding: 18px 14px 10px 14px;
-      box-shadow: 0 2px 8px rgba(60,80,110,0.04);
-      color: var(--text);
-      font-size: 1rem;
-      text-align: center;
-    }
-    .block-right .title {
+    .dress-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       color: var(--text);
       margin-bottom: 8px;
       letter-spacing: 1px;
+      text-align: center;
     }
-    .block-right .subtitle {
+    .dress-subtitle {
       font-family: 'Dancing Script', cursive;
       font-size: 1.1rem;
-      color: var(--blue-dark);
+      color: #b7c7d6;
       margin-bottom: 10px;
+      text-align: center;
+      opacity: 0.7;
     }
     .dress-palette {
       display: flex;
@@ -348,149 +372,211 @@
     .dress-color.c3 { background: #b3a89e; }
     .dress-color.c4 { background: #a6a6a6; }
     .dress-color.c5 { background: #e6e2d3; }
-    .img-polaroid-right {
-      width: 80px;
-      height: 90px;
-      background: #dbe2ea;
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-      margin: 0 auto 10px auto;
-    }
-    .img-polaroid-right::after {
-      content: 'Фото';
-      color: #b7c7d6;
-      font-size: 0.9rem;
-      font-family: 'Montserrat', sans-serif;
-      position: absolute;
-      bottom: 6px;
-      left: 0; right: 0;
+    .details-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
       text-align: center;
-      opacity: 0.6;
+    }
+    .details-subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: #b7c7d6;
+      margin-bottom: 10px;
+      text-align: center;
+      opacity: 0.7;
+    }
+    .details-desc {
+      color: var(--gray);
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .img-details {
+      width: 100px;
+      height: 110px;
+      background: #dbe2ea;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(60,80,110,0.10);
+      margin: 0 auto 10px auto;
+      display: block;
+      object-fit: cover;
+    }
+    .rsvp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .rsvp-subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: #b7c7d6;
+      margin-bottom: 10px;
+      text-align: center;
+      opacity: 0.7;
+    }
+    .rsvp-desc {
+      color: var(--gray);
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 10px;
     }
     .btn-form {
-      background: var(--blue);
-      color: #fff;
-      border: none;
+      background: transparent;
+      color: var(--blue-dark);
+      border: 1.5px solid var(--blue-dark);
       border-radius: 8px;
       padding: 10px 24px;
       font-size: 1rem;
       font-family: 'Montserrat', sans-serif;
-      margin: 10px 0 18px 0;
+      margin: 10px auto 18px auto;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
+      display: block;
+      touch-action: manipulation;
     }
     .btn-form:hover {
       background: var(--blue-dark);
+      color: #fff;
     }
-    @media (max-width: 900px) {
-      .invite-wrap {
-        flex-direction: column;
-        gap: 18px;
-        padding: 18px 2vw 18px 2vw;
-      }
-      .col {
-        min-width: 0;
-      }
+    .rsvp-sign {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: #b7c7d6;
+      text-align: center;
+      margin-top: 18px;
+      opacity: 0.7;
     }
     @media (max-width: 600px) {
-      .invite-wrap {
+      .main-wrap {
         padding: 0 0 18px 0;
       }
-      .col {
-        border-radius: 10px;
-        padding-bottom: 10px;
+      .big-white {
+        border-radius: 0;
+        margin-top: 0;
+        margin-bottom: 0;
       }
-      .header-block, .center-block, .timing-block, .block-white, .block-right, .countdown-block {
-        padding-left: 10px;
-        padding-right: 10px;
+      .section, .section-blue, .section-white {
+        padding: 0 8px;
       }
+      .img-main { height: 140px; }
+      .venue-polaroid, .polaroid-frame { width: 56px; height: 62px; }
+      .polaroid-frame img, .venue-polaroid img { width: 48px; height: 48px; }
+      .img-details { width: 70px; height: 80px; }
+    }
+    @media (max-width: 400px) {
+      .main-wrap {
+        padding: 0 0 10px 0;
+      }
+      .section, .section-blue, .section-white {
+        padding: 0 2px;
+      }
+      .img-main { height: 90px; }
+      .venue-polaroid, .polaroid-frame { width: 38px; height: 44px; }
+      .polaroid-frame img, .venue-polaroid img { width: 32px; height: 32px; }
+      .img-details { width: 48px; height: 54px; }
     }
   </style>
 </head>
 <body>
-  <div class="invite-wrap">
-    <!-- Левая колонка -->
-    <div class="col">
-      <div class="header-block" style="position:relative;">
-        <img class="img-main" src="samat.jpg" alt="Фото пары">
-        <div class="date-big">27<br>07<br>24</div>
-        <div class="names" style="margin-top:180px;">MARK<br>&<br>ANASTASIA</div>
-      </div>
-      <div class="block-white">
-        <div class="img-polaroid-row">
-          <img class="img-polaroid" src="chill.jpeg" alt="Детское фото 1">
-          <img class="img-polaroid" src="chill2.jpg" alt="Детское фото 2">
+  <div class="main-wrap">
+    <div class="big-white">
+      <!-- 1. Header -->
+      <div class="section section-white header-block" style="padding-bottom:0;">
+        <div style="position:relative;">
+          <img class="img-main" src="photo2.jpg" alt="Фото пары">
+          <div class="date-big">27<br>07<br>24</div>
         </div>
-        <div class="desc" style="margin-top:10px;">M + A = <span style="font-size:1.2em; color:#b7c7d6;">&#10084;</span></div>
-        <div class="desc">УЗНАЁТЕ ЭТИХ ДЕТИШЕК?<br>Да-да, это мы! Время летит так быстро, представляете? И вот мы повзрослели, как естественно пришло время создать свою семью?</div>
-        <img class="img-polaroid" src="photo3.jpg" alt="Фото истории" style="margin:10px auto;">
+        <div class="names">MARK<br>&<br>ANASTASIA</div>
+      </div>
+      <!-- 2. Детские фото и история -->
+      <div class="section section-white">
+        <div class="polaroid-row">
+          <div class="polaroid-frame zoom-effect" style="transform: rotate(-8deg);">
+            <img src="chill.jpeg" alt="Детское фото 1">
+            <div class="polaroid-caption">САМАТ</div>
+          </div>
+          <div class="polaroid-frame zoom-effect" style="transform: rotate(7deg);">
+            <img src="chill2.jpg" alt="Детское фото 2">
+            <div class="polaroid-caption">ЭРКАЙ</div>
+          </div>
+        </div>
+        <div class="desc" style="margin-bottom:0;">M + A = <span style="font-size:1.2em; color:#b7c7d6;">&#10084;</span></div>
+        <div class="desc" style="margin-bottom:0;">УЗНАЁТЕ ЭТИХ ДЕТИШЕК?</div>
+        <div class="desc" style="font-size:0.98rem;">Да-да, это мы! Время летит так быстро, представляете? И вот мы повзрослели, как естественно пришло время создать свою семью?</div>
+      </div>
+      <!-- 3. Фото пары и приглашение -->
+      <div class="section section-white">
+        <div class="polaroid-row">
+          <div class="polaroid-frame zoom-effect" style="transform: rotate(-3deg);">
+            <img src="photo3.jpg" alt="Фото пары">
+            <div class="polaroid-caption">Вместе</div>
+          </div>
+        </div>
         <div class="names" style="margin-top:10px;">РОДНЫЕ И ЛЮБИМЫЕ!</div>
-        <div class="date">27.07.2024</div>
+        <div class="desc" style="margin-bottom:0;">27.07.2024</div>
         <div class="desc">Мы будем безумно рады видеть вас в кругу наших гостей!<br>MARK & ANASTASIA</div>
-      </div>
-      <div class="calendar-block">
-        <div class="calendar-title">Август 2025</div>
-        <svg class="calendar-svg" viewBox="0 0 220 120">
-          <rect x="0" y="0" width="220" height="120" rx="16" fill="#fff" stroke="#b7c7d6" stroke-width="2"/>
-          <text x="20" y="35" font-size="16" fill="#7a8fa6">Пн Вт Ср Чт Пт Сб Вс</text>
-          <text x="20" y="60" font-size="16" fill="#232a33">11 12 13 <tspan fill="#b7c7d6" font-weight="bold">14</tspan> 15 16 17</text>
-          <text x="20" y="85" font-size="16" fill="#232a33">18 19 20 21 22 23 24</text>
-        </svg>
-      </div>
-      <div class="countdown-block">
-        <div class="desc">ДО НАШЕЙ СВАДЬБЫ ОСТАЛОСЬ</div>
+        <div class="desc" style="margin-bottom:0;">ДО НАШЕЙ СВАДЬБЫ ОСТАЛОСЬ</div>
         <div class="countdown" id="countdown"></div>
-        <div style="font-size:0.9rem; color:#b7c7d6; margin-bottom:8px;">дней  часов  минут  секунд</div>
+        <div style="font-size:0.9rem; color:#b7c7d6; margin-bottom:8px; text-align:center;">дней  часов  минут  секунд</div>
       </div>
-    </div>
-    <!-- Центр -->
-    <div class="col">
-      <div class="center-block">
-        <div class="title">МЕСТО ПРОВЕДЕНИЯ</div>
-        <div class="subtitle">location</div>
-        <div class="desc">ЦЕРЕМОНИЯ ВОЗЛЕ МОРЯ.<br>До места проведения церемонии мы советуем приехать на гостевую парковку на карте и оттуда идти по тропинке около пяти минут, там вы сразу увидите нашу локацию.</div>
-        <div class="img-polaroid-center-row">
-          <img class="img-polaroid-center" src="angel.jpeg" alt="Место 1">
-          <img class="img-polaroid-center" src="serd.jpeg" alt="Место 2">
+      <!-- 4. Место проведения -->
+      <div class="section section-blue">
+        <div class="venue-title">МЕСТО ПРОВЕДЕНИЯ</div>
+        <div class="venue-subtitle">location</div>
+        <div class="venue-desc">ЦЕРЕМОНИЯ ВОЗЛЕ МОРЯ.<br>До места проведения церемонии мы советуем приехать на гостевую парковку на карте и оттуда идти по тропинке около пяти минут, там вы сразу увидите нашу локацию.</div>
+        <div class="venue-polaroids">
+          <div class="venue-polaroid"></div>
+          <div class="venue-polaroid"></div>
         </div>
-        <div class="address">Рига, Brivibas bulvaris 36.</div>
+        <div class="venue-address">Рига, Brivibas bulvaris 36.</div>
         <button class="btn-map">Показать на карте</button>
       </div>
-      <div class="timing-block">
-        <div class="timing-title">ТАЙМИНГ ДНЯ<br><span style="font-family:'Dancing Script',cursive;font-size:1.1rem;">timing</span></div>
+      <!-- 5. Тайминг дня -->
+      <div class="section section-blue timing-block">
+        <div class="timing-title">ТАЙМИНГ ДНЯ</div>
+        <div class="timing-subtitle">timing</div>
         <div class="timing-list">
           <div class="timing-item">
+            <svg class="timing-icon" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#b7c7d6" opacity=".2"/><rect x="15" y="8" width="2" height="10" rx="1" fill="#7a8fa6"/><rect x="15" y="16" width="7" height="2" rx="1" fill="#7a8fa6"/></svg>
             <div class="timing-time">12:45</div>
             <div class="timing-desc">Сбор гостей</div>
             <div class="timing-arrow"></div>
           </div>
           <div class="timing-item">
+            <svg class="timing-icon" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#b7c7d6" opacity=".2"/><rect x="15" y="8" width="2" height="10" rx="1" fill="#7a8fa6"/><rect x="15" y="16" width="7" height="2" rx="1" fill="#7a8fa6"/></svg>
             <div class="timing-time">13:00</div>
             <div class="timing-desc">Церемония</div>
             <div class="timing-arrow"></div>
           </div>
           <div class="timing-item">
+            <svg class="timing-icon" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#b7c7d6" opacity=".2"/><rect x="15" y="8" width="2" height="10" rx="1" fill="#7a8fa6"/><rect x="15" y="16" width="7" height="2" rx="1" fill="#7a8fa6"/></svg>
             <div class="timing-time">17:00</div>
             <div class="timing-desc">Welcome drink/фуршет</div>
             <div class="timing-arrow"></div>
           </div>
           <div class="timing-item">
+            <svg class="timing-icon" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#b7c7d6" opacity=".2"/><rect x="15" y="8" width="2" height="10" rx="1" fill="#7a8fa6"/><rect x="15" y="16" width="7" height="2" rx="1" fill="#7a8fa6"/></svg>
             <div class="timing-time">18:00</div>
             <div class="timing-desc">Торжественный банкет</div>
             <div class="timing-arrow"></div>
           </div>
           <div class="timing-item">
+            <svg class="timing-icon" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#b7c7d6" opacity=".2"/><rect x="15" y="8" width="2" height="10" rx="1" fill="#7a8fa6"/><rect x="15" y="16" width="7" height="2" rx="1" fill="#7a8fa6"/></svg>
             <div class="timing-time">23:00</div>
             <div class="timing-desc">Завершение вечера</div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Правая колонка -->
-    <div class="col">
-      <div class="block-right">
-        <div class="title">ДРЕСС-КОД<br><span class="subtitle">dress code</span></div>
+      <!-- 6. Dress code -->
+      <div class="section section-white">
+        <div class="dress-title">ДРЕСС-КОД</div>
+        <div class="dress-subtitle">dress code</div>
         <div class="desc">Мы очень ждем, и с удовольствием готовимся к нашему незабываемому дню! Поддержите нас вашими улыбками и объятиями, а также красивыми нарядами в палитре торжества.</div>
         <div class="dress-palette">
           <div class="dress-color c1"></div>
@@ -501,20 +587,45 @@
         </div>
         <div class="desc">Захватите с собой удобную обувь для танцев!</div>
       </div>
-      <div class="block-right">
-        <div class="title">ДЕТАЛИ<br><span class="subtitle">details</span></div>
-        <div class="desc"><b>Подарки:</b> Ваши пожелания в конвертах будут лучшими подарками, которые помогут исполнить наши мечты.<br><br><b>Цветы:</b> Просим не дарить нам цветы — мы не успеем насладиться их красотой. А вот милый плюшевый, как или съедобную сладкую букет мы будем рады.</div>
-        <img class="img-polaroid-right" src="details.jpg" alt="Детали">
+      <!-- 7. Details -->
+      <div class="section section-white">
+        <div class="details-title">ДЕТАЛИ</div>
+        <div class="details-subtitle">details</div>
+        <div class="details-desc"><b>Подарки:</b> Ваши пожелания в конвертах будут лучшими подарками, которые помогут исполнить наши мечты.</div>
+        <div class="details-desc"><b>Цветы:</b> Просим не дарить нам цветы — мы не успеем насладиться их красотой. А вот милый плюшевый, как или съедобную сладкую букет мы будем рады.</div>
+        <div class="polaroid-row">
+          <div class="polaroid-frame zoom-effect" style="transform: rotate(5deg);">
+            <img src="photo4.jpg" alt="Детали">
+            <div class="polaroid-caption">Подарки</div>
+          </div>
+        </div>
       </div>
-      <div class="block-right">
-        <div class="title">АНКЕТА ГОСТЯ<br><span class="subtitle">rsvp</span></div>
-        <div class="desc">Пожалуйста, подтвердите свое присутствие, чтобы удобным способом и заполните форму по ссылке ниже.</div>
+      <!-- 8. RSVP -->
+      <div class="section section-blue">
+        <div class="rsvp-title">АНКЕТА ГОСТЯ</div>
+        <div class="rsvp-subtitle">rsvp</div>
+        <div class="rsvp-desc">Пожалуйста, подтвердите свое присутствие, чтобы удобным способом и заполните форму по ссылке ниже.</div>
         <button class="btn-form">Заполнить анкету</button>
-        <div class="desc" style="margin-top:10px;">С нетерпением ждем встречи с вами на нашей свадьбе!<br><span style="font-family:'Dancing Script',cursive;">Mark & Anastasia</span></div>
+        <div class="rsvp-sign">С нетерпением ждем встречи с вами на нашей свадьбе!<br>Mark & Anastasia</div>
       </div>
     </div>
   </div>
   <script>
+    // Эффект приближения на мобильных (touch)
+    document.addEventListener('DOMContentLoaded', function() {
+      var zooms = document.querySelectorAll('.zoom-effect');
+      zooms.forEach(function(el) {
+        el.addEventListener('touchstart', function() {
+          el.classList.add('active');
+        });
+        el.addEventListener('touchend', function() {
+          el.classList.remove('active');
+        });
+        el.addEventListener('touchcancel', function() {
+          el.classList.remove('active');
+        });
+      });
+    });
     function updateCountdown() {
       const end = new Date('2025-08-14T17:00:00');
       const now = new Date();
@@ -533,4 +644,4 @@
     updateCountdown();
   </script>
 </body>
-</html> 
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test</title>
+  <style>
+    body { background: #232a33; }
+    .invite-wrap {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      gap: 32px;
+      padding: 48px 12px 32px 12px;
+    }
+    .col {
+      background: #fff;
+      border-radius: 18px;
+      flex: 1 1 0;
+      min-width: 0;
+      min-height: 200px;
+      border: 2px solid red;
+      padding: 24px;
+    }
+    @media (max-width: 900px) {
+      .invite-wrap { flex-direction: column; gap: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="invite-wrap">
+    <div class="col">Левая колонка</div>
+    <div class="col">Центр</div>
+    <div class="col">Правая колонка</div>
+  </div>
+</body>
+</html>
